@@ -11,20 +11,17 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/choose.css" />
+    <link rel="stylesheet" href="css/battlefield.css" />
   </head>
   <body>
-    <div class="index-container">
-      <div class="back-btn-div">
-        <a href="index.html"><button class="back-btn">Back</button></a>
-      </div>
-      <h1 class="choose-title sub-title">Choose Your Path!</h1>
-      <div class="btn-area">
-        <a href="selection.html"
-          ><button class="primary-btn">Let's Battle!</button></a
-        >
-        <a href=""><button class="primary-btn">Sharpen Your Skills!</button></a>
-      </div>
+    <div class="back-btn-div">
+      <a href="index.html"><button class="back-btn">Restart</button></a>
     </div>
+    <div class="battleField-container">
+      <div class="battle-area"></div>
+      <div class="scoreboard"></div>
+    </div>
+
+    <script src="js/battle.js"></script>
   </body>
 </html>

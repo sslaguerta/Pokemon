@@ -1,0 +1,76 @@
+body {
+  background-color: black;
+}
+
+.battleField-container {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+
+.battle-area {
+  width: 70vw;
+  height: 100vh;
+  background-image: url("/images/BG5.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scoreboard {
+  width: 29vw;
+  height: 100vh;
+  background-color: #2b4f6b;
+  border: 5px solid #ffcd05b9;
+  padding: 12px;
+  color: white;
+  font-family: "Pixelify Sans", sans-serif;
+  font-size: 20px;
+  border-radius: 10px;
+}
+
+.scoreboard table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.scoreboard th {
+  text-align: center;
+  color: yellow;
+  font-size: 3rem;
+  padding: 8px;
+}
+
+.scoreboard td {
+  padding: 6px;
+  border: 1px solid #ccc;
+}
+.scoreboard td:nth-child(2) {
+  text-align: right;
+}
+
+.current-battle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2.5rem;
+  margin-top: 150px;
+}
+
+.pokemon-area {
+  display: flex;
+  margin-top: 5rem;
+  gap: 30rem;
+}
+
+.pokemon-area img {
+  width: 150px;
+  height: auto;
+}
+
+.pokemon-area div:first-child {
+  transform: scaleX(-1);
+}
