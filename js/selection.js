@@ -5,9 +5,13 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif",
     type: "Fire",
-    hp: 39,
-    attack: 52,
+    hp: 100,
     defense: 43,
+    attacks: [
+      { name: "Ember", damage: 25 },
+      { name: "Flamethrower", damage: 40 },
+      { name: "Scratch", damage: 15 },
+    ],
   },
   {
     name: "Pikachu",
@@ -15,9 +19,13 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu-f.gif",
     type: "Electric",
-    hp: 35,
-    attack: 55,
+    hp: 100,
     defense: 40,
+    attacks: [
+      { name: "Thunder Shock", damage: 20 },
+      { name: "Quick Attack", damage: 15 },
+      { name: "Thunderbolt", damage: 40 },
+    ],
   },
   {
     name: "Squirtle",
@@ -25,19 +33,27 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/squirtle.gif",
     type: "Water",
-    hp: 44,
-    attack: 48,
+    hp: 100,
     defense: 65,
+    attacks: [
+      { name: "Water Gun", damage: 20 },
+      { name: "Tackle", damage: 15 },
+      { name: "Bubble Beam", damage: 35 },
+    ],
   },
   {
     name: "Dratini",
     image: "/images/dratini.png",
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/dratini.gif",
-    type: "Fire",
+    type: "Dragon",
     hp: 100,
-    attack: 60,
     defense: 30,
+    attacks: [
+      { name: "Dragon Rage", damage: 40 },
+      { name: "Slam", damage: 25 },
+      { name: "Twister", damage: 30 },
+    ],
   },
   {
     name: "Haunter",
@@ -46,8 +62,12 @@ const pokemons = [
       "https://img.pokemondb.net/sprites/black-white/anim/normal/haunter.gif",
     type: "Poison",
     hp: 100,
-    attack: 60,
     defense: 30,
+    attacks: [
+      { name: "Lick", damage: 15 },
+      { name: "Shadow Ball", damage: 40 },
+      { name: "Night Shade", damage: 30 },
+    ],
   },
   {
     name: "Psyduck",
@@ -56,8 +76,12 @@ const pokemons = [
       "https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif",
     type: "Water",
     hp: 100,
-    attack: 60,
     defense: 30,
+    attacks: [
+      { name: "Water Gun", damage: 20 },
+      { name: "Confusion", damage: 25 },
+      { name: "Scratch", damage: 15 },
+    ],
   },
 ];
 
@@ -120,10 +144,6 @@ function renderPokemon(index) {
         <tr>
             <td>Hp:</td>
             <td>${pokemon.hp}</td>
-        </tr>
-        <tr>
-            <td>Attack:</td>
-            <td>${pokemon.attack}</td>
         </tr>
         <tr>
             <td>Defense:</td>
