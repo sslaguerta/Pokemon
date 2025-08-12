@@ -1,0 +1,15 @@
+.index-container {
+  background-image: url("/images/BG3.png");
+}
+
+
+.choose-title {
+  font-size: 6rem;
+}
+.primary-btn {
+  width: 450px;
+}
+.btn-area {
+  display: flex;
+  gap: 10rem;
+}
