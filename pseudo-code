@@ -1,3 +1,23 @@
 Pokemon game (Criteria)
 
 Use round robin teknik
+
+
+generateROundRobin() explanation
+
+-- creates empty array for match schedule
+-- creates empty players array with the length of players array
+
+FOR LOOP
+-- iterate over all players
+-- let i = 0 so that it starts with the player 1
+-- divide the length of players by 2 so that each game is byPair
+-- set home player as the current index player 0 to 2
+-- set away as 6 - 1 - 0 = 5 => player 5 down to 3
+-- push round and the match objects to the schedule array
+-- {round: 1, match [0, 5]}
+-- {round: 2, match [1, 4]}
+-- {round: 3, match [2, 3]}
+-- players.splice(1, 0, players.pop());  removes last player then add to index 1
+-- .pop() returns value of the last player
+-- returns schedule array

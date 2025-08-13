@@ -7,11 +7,7 @@ const pokemons = [
     type: "Fire",
     hp: 100,
     defense: 43,
-    attacks: [
-      { name: "Ember", damage: 25 },
-      { name: "Flamethrower", damage: 40 },
-      { name: "Scratch", damage: 15 },
-    ],
+    attacks: [{ name: "Ember" }, { name: "Flamethrower" }, { name: "Scratch" }],
   },
   {
     name: "Pikachu",
@@ -22,9 +18,9 @@ const pokemons = [
     hp: 100,
     defense: 40,
     attacks: [
-      { name: "Thunder Shock", damage: 20 },
-      { name: "Quick Attack", damage: 15 },
-      { name: "Thunderbolt", damage: 40 },
+      { name: "Thunder Shock" },
+      { name: "Quick Attack" },
+      { name: "Thunderbolt" },
     ],
   },
   {
@@ -36,9 +32,9 @@ const pokemons = [
     hp: 100,
     defense: 65,
     attacks: [
-      { name: "Water Gun", damage: 20 },
-      { name: "Tackle", damage: 15 },
-      { name: "Bubble Beam", damage: 35 },
+      { name: "Water Gun" },
+      { name: "Tackle" },
+      { name: "Bubble Beam" },
     ],
   },
   {
@@ -49,11 +45,7 @@ const pokemons = [
     type: "Dragon",
     hp: 100,
     defense: 30,
-    attacks: [
-      { name: "Dragon Rage", damage: 40 },
-      { name: "Slam", damage: 25 },
-      { name: "Twister", damage: 30 },
-    ],
+    attacks: [{ name: "Dragon Rage" }, { name: "Slam" }, { name: "Twister" }],
   },
   {
     name: "Haunter",
@@ -64,9 +56,9 @@ const pokemons = [
     hp: 100,
     defense: 30,
     attacks: [
-      { name: "Lick", damage: 15 },
-      { name: "Shadow Ball", damage: 40 },
-      { name: "Night Shade", damage: 30 },
+      { name: "Lick" },
+      { name: "Shadow Ball" },
+      { name: "Night Shade" },
     ],
   },
   {
@@ -78,21 +70,25 @@ const pokemons = [
     hp: 100,
     defense: 30,
     attacks: [
-      { name: "Water Gun", damage: 20 },
-      { name: "Confusion", damage: 25 },
-      { name: "Scratch", damage: 15 },
+      { name: "Water Gun" },
+      { name: "Confusion" },
+      { name: "Scratch" },
     ],
   },
 ];
 
+function randomLevel() {
+  return Math.floor(Math.random() * 5) + 1;
+}
+
 function startTournament(selectedPokemon) {
   const players = [
-    { name: "You", pokemon: selectedPokemon },
-    { name: "Ash", pokemon: getRandomPokemon() },
-    { name: "Misty", pokemon: getRandomPokemon() },
-    { name: "Brock", pokemon: getRandomPokemon() },
-    { name: "Red", pokemon: getRandomPokemon() },
-    { name: "Fernan", pokemon: getRandomPokemon() },
+    { name: "You", pokemon: selectedPokemon, level: 1 },
+    { name: "Ash", pokemon: getRandomPokemon(), level: 1 },
+    { name: "Misty", pokemon: getRandomPokemon(), level: randomLevel() },
+    { name: "Brock", pokemon: getRandomPokemon(), level: randomLevel() },
+    { name: "Red", pokemon: getRandomPokemon(), level: randomLevel() },
+    { name: "Fernan", pokemon: getRandomPokemon(), level: randomLevel() },
   ];
   const schedule = generateRoundRobin(players.length);
 
@@ -110,8 +106,8 @@ function getRandomPokemon() {
 }
 
 function generateRoundRobin(numPlayers) {
-  let schedule = [];
-  let players = [...Array(numPlayers).keys()]; // [0,1,2,3,4,5]
+  let schedule = []; // for storing all the matches
+  let players = [...Array(numPlayers).keys()]; // [0,1,2,3,4,5] Creates an empty array with numPlayers length
 
   for (let round = 0; round < numPlayers - 1; round++) {
     for (let i = 0; i < numPlayers / 2; i++) {

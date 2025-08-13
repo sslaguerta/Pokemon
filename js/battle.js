@@ -50,13 +50,23 @@ function renderScoreboard() {
 
   let currentBattleHTML = `
     <div class="current-battle">
-      <h3 id="player1-name">${player1.pokemon.name}</h3>
+      <h3 id="player1-name">${player1.name}</h3>
       <h4>V.S.</h4>
-      <h3 id="player2-name">${player2.pokemon.name}</h3>
+      <h3 id="player2-name">${player2.name}</h3>
     </div>
   `;
 
   scoreboardElement.innerHTML = tableHTML + currentBattleHTML;
+}
+
+function nextMatch() {
+  currentMatchIndex++;
+  if (currentMatchIndex >= schedule.length) {
+    console.log("Finished");
+    return;
+  }
+  renderScoreboard();
+  renderBattleArea();
 }
 
 function renderBattleArea() {
@@ -68,24 +78,27 @@ function renderBattleArea() {
   battleAreaElement.innerHTML = `
     <div class="pokemon-area">
     <div class="inbattle-pokemon">
-        ${
-          player1.pokemon.hp >= 30
-            ? `<h3 style="color: green">Health: ${player1.pokemon.hp} <br> DEF: ${player1.pokemon.defense}</h3>`
-            : `<h3 style="color: red">Health: ${player1.pokemon.hp} <br> DEF: ${player1.pokemon.defense}</h3>`
-        }
+        <h3 style="color:${player1.pokemon.hp >= 30 ? "green" : "red"}">
+          Health: ${player1.pokemon.hp} <br> DEF: ${player1.pokemon.defense}
+        </h3>
         <img src="${player1.pokemon.movingImg}" alt="${
     player1.name
   }" class="flip-horizontal"/>
-        <h2>${player1.name}</h2>
+         <div class="player-details"> 
+            <h4>${player1.level}</h4>
+            <h2>${player1.name}</h2>
+         </div>
+       
     </div>
         <div class="inbattle-pokemon">
-            ${
-              player2.pokemon.hp >= 30
-                ? `<h3 style="color: green">Health: ${player2.pokemon.hp} <br> DEF: ${player2.pokemon.defense}</h3>`
-                : `<h3 style="color: red">Health: ${player2.pokemon.hp} <br> DEF: ${player2.pokemon.defense}</h3>`
-            }
+        <h3 style="color:${player2.pokemon.hp >= 30 ? "green" : "red"}">
+          Health: ${player2.pokemon.hp} <br> DEF: ${player2.pokemon.defense}
+        </h3>
         <img src="${player2.pokemon.movingImg}" alt="${player2.name}" />
-        <h2>${player2.name}</h2>
+        <div class="player-details"> 
+            <h4>${player2.level}</h4>
+            <h2>${player2.name}</h2>
+         </div>
         </div>
     </div>
   `;
@@ -103,11 +116,20 @@ function renderBattleArea() {
   });
 }
 
+function calculateDamage(attacker, defender) {
+  const luckFactor = 1 + (Math.random() * 0.2 - 0.1); // -10% to +10% luck factor
+  const defenseFactor = (100 - defender.pokemon.defense) / 100; //Defense = 30 → 100 - 30 = 70 → 70% of the damage still gets through.
+  const levelFactor = 1 + (attacker.level - 1) * 0.1; // each level increase 10% damage
+
+  // Randomized base attack value between 15 and 25
+  const baseAttack = Math.floor(Math.random() * (25 - 15 + 1)) + 15;
+
+  return Math.floor(baseAttack * luckFactor * defenseFactor * levelFactor);
+}
+
 function handlePlayerAttack(attacker, defender, attackIndex) {
   const attack = attacker.pokemon.attacks[attackIndex];
-  const damage = Math.floor(
-    (attack.damage * (100 - defender.pokemon.defense)) / 100
-  );
+  const damage = calculateDamage(attacker, defender);
 
   defender.pokemon.hp -= damage;
 
@@ -127,15 +149,15 @@ function handlePlayerAttack(attacker, defender, attackIndex) {
     handleComputerAttack(defender, attacker);
   }, 800);
 }
+
 function handleComputerAttack(attacker, defender) {
   const randomIndex = Math.floor(
     Math.random() * attacker.pokemon.attacks.length
   );
-  const attack = attacker.pokemon.attacks[randomIndex];
+  const attack = attacker.pokemon.attacks[randomIndex]; //use for console.log
 
-  const damage = Math.floor(
-    (attack.damage * (100 - defender.pokemon.defense)) / 100
-  );
+  const damage = calculateDamage(attacker, defender);
+
   defender.pokemon.hp -= damage;
 
   console.log(
@@ -149,5 +171,6 @@ function handleComputerAttack(attacker, defender) {
 
   renderBattleArea();
 }
+
 renderScoreboard();
 renderBattleArea();
