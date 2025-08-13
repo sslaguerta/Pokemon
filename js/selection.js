@@ -83,7 +83,7 @@ function randomLevel() {
 
 function startTournament(selectedPokemon) {
   const players = [
-    { name: "You", pokemon: selectedPokemon, level: 1 },
+    { name: "You", pokemon: selectedPokemon, level: 10 },
     { name: "Ash", pokemon: getRandomPokemon(), level: 1 },
     { name: "Misty", pokemon: getRandomPokemon(), level: randomLevel() },
     { name: "Brock", pokemon: getRandomPokemon(), level: randomLevel() },
@@ -111,8 +111,8 @@ function generateRoundRobin(numPlayers) {
 
   for (let round = 0; round < numPlayers - 1; round++) {
     for (let i = 0; i < numPlayers / 2; i++) {
-      let home = players[i];
-      let away = players[numPlayers - 1 - i];
+      let home = players[i]; //2
+      let away = players[numPlayers - 1 - i]; //4
       schedule.push({ round: round + 1, match: [home, away] });
     }
     players.splice(1, 0, players.pop());

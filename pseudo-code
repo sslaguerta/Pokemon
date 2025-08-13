@@ -2,7 +2,6 @@ Pokemon game (Criteria)
 
 Use round robin teknik
 
-
 generateROundRobin() explanation
 
 -- creates empty array for match schedule
@@ -18,6 +17,25 @@ FOR LOOP
 -- {round: 1, match [0, 5]}
 -- {round: 2, match [1, 4]}
 -- {round: 3, match [2, 3]}
--- players.splice(1, 0, players.pop());  removes last player then add to index 1
+-- {round: 4, match [, ]}
+-- players.splice(1, 0, players.pop()); removes last player then add to index 1
 -- .pop() returns value of the last player
 -- returns schedule array
+
+{"round":1,"match":[0,5]}, 0
+{"round":1,"match":[1,4]}, 1
+{"round":1,"match":[2,3]}, 2
+{"round":2,"match":[0,4]}, 
+{"round":2,"match":[5,3]},
+{"round":2,"match":[1,2]},
+{"round":3,"match":[0,3]},
+{"round":3,"match":[4,2]},
+{"round":3,"match":[5,1]},
+{"round":4,"match":[0,2]},
+{"round":4,"match":[3,1]},
+{"round":4,"match":[4,5]},
+{"round":5,"match":[0,1]},
+{"round":5,"match":[2,5]},
+{"round":5,"match":[3,4]}
+
+[0, 5, 1, 2, 3, 4]

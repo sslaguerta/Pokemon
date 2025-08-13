@@ -9,6 +9,7 @@ const scoreboardElement = document.querySelector(".scoreboard");
 const battleAreaElement = document.querySelector(".battle-area");
 const attackButtons = document.querySelector(".attack-buttons");
 
+// console.log(schedule.length);
 function renderScoreboard() {
   const players = JSON.parse(localStorage.getItem("players")) || [];
 
@@ -59,20 +60,10 @@ function renderScoreboard() {
   scoreboardElement.innerHTML = tableHTML + currentBattleHTML;
 }
 
-function nextMatch() {
-  currentMatchIndex++;
-  if (currentMatchIndex >= schedule.length) {
-    console.log("Finished");
-    return;
-  }
-  renderScoreboard();
-  renderBattleArea();
-}
-
 function renderBattleArea() {
-  const match = schedule[currentMatchIndex];
-  const player1 = players[match.match[0]];
-  console.log(players[match.match[0]]);
+  const match = schedule[currentMatchIndex]; //check what match is ongoing base on index
+  const player1 = players[match.match[0]]; //gets the player by accessing match index
+  //   console.log(players[match.match[0]]);
   const player2 = players[match.match[1]];
 
   battleAreaElement.innerHTML = `
@@ -103,21 +94,31 @@ function renderBattleArea() {
     </div>
   `;
 
-  attackButtons.innerHTML = `
-    ${player1.pokemon.attacks
-      .map((attack) => `<button class="attack-btn">${attack.name}</button>`)
-      .join("")}
-    `;
+  // Player vs CPU
+  // check if the player 1 is a human so that it can render buttons
+  if (player1.name === "You") {
+    attackButtons.style.display = "flex";
+    attackButtons.innerHTML = player1.pokemon.attacks
+      .map((atk) => `<button class="attack-btn">${atk.name}</button>`)
+      .join(""); //merges all array elements into a single string with nothing in between
 
-  document.querySelectorAll(".attack-btn").forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      handlePlayerAttack(player1, player2, index);
+    //puts onclick function in every button base on index
+    document.querySelectorAll(".attack-btn").forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        handlePlayerAttack(player1, player2, index);
+      });
     });
-  });
+  }
+  // CPU vs CPU
+  else {
+    attackButtons.innerHTML = "<p>CPU battle in progress...</p>";
+    setTimeout(() => simulateCpuBattle(player1, player2), 1000);
+    // setTimeout(() => handleComputerAttack(player1, player2), 1000);
+  }
 }
 
 function calculateDamage(attacker, defender) {
-  const luckFactor = 1 + (Math.random() * 0.2 - 0.1); // -10% to +10% luck factor
+  const luckFactor = 1 + (Math.random() * 0.2 - 0.1); // If luckFactor = 0.95, then 100 * 0.95 = 95 → 5% less damage
   const defenseFactor = (100 - defender.pokemon.defense) / 100; //Defense = 30 → 100 - 30 = 70 → 70% of the damage still gets through.
   const levelFactor = 1 + (attacker.level - 1) * 0.1; // each level increase 10% damage
 
@@ -128,10 +129,11 @@ function calculateDamage(attacker, defender) {
 }
 
 function handlePlayerAttack(attacker, defender, attackIndex) {
-  const attack = attacker.pokemon.attacks[attackIndex];
+  attackButtons.style.display = "none";
+  const attack = attacker.pokemon.attacks[attackIndex]; //gets the attacker attack index for identifying what attack is used
   const damage = calculateDamage(attacker, defender);
 
-  defender.pokemon.hp -= damage;
+  defender.pokemon.hp -= damage; // decrease opponent hp
 
   console.log(
     `${attacker.name} used ${attack.name}! ${defender.name} took ${damage} damage.`
@@ -140,21 +142,23 @@ function handlePlayerAttack(attacker, defender, attackIndex) {
   if (defender.pokemon.hp <= 0) {
     defender.pokemon.hp = 0;
     console.log(`${defender.name} fainted!`);
-    renderBattleArea();
-    return;
+    renderBattleArea(); // to update hp of defeated pokemon
+    nextMatch();
+    return; // to refrain computer for attacking back
   }
   renderBattleArea();
 
   setTimeout(() => {
     handleComputerAttack(defender, attacker);
-  }, 800);
+    attackButtons.style.display = "flex";
+  }, 1000);
 }
 
 function handleComputerAttack(attacker, defender) {
   const randomIndex = Math.floor(
-    Math.random() * attacker.pokemon.attacks.length
+    Math.random() * attacker.pokemon.attacks.length // for the computer to select an attack automatically
   );
-  const attack = attacker.pokemon.attacks[randomIndex]; //use for console.log
+  const attack = attacker.pokemon.attacks[randomIndex]; //used for console.log
 
   const damage = calculateDamage(attacker, defender);
 
@@ -167,9 +171,51 @@ function handleComputerAttack(attacker, defender) {
   if (defender.pokemon.hp <= 0) {
     defender.pokemon.hp = 0;
     console.log(`${defender.name} fainted!`);
+    nextMatch();
+    return;
+  }
+  renderBattleArea();
+}
+
+function nextMatch() {
+  players.forEach((player) => {
+    player.pokemon.hp = 100;
+  });
+
+  currentMatchIndex++;
+  if (currentMatchIndex >= schedule.length) {
+    console.log("Tournament finished!");
+    return;
+  }
+  renderScoreboard();
+  renderBattleArea();
+}
+
+function simulateCpuBattle(cpu1, cpu2) {
+  const attacker = cpu1; // randomize who is the attacker
+  const defender = cpu2; // if cpu1 is the attacker so cpu2 is the defender
+  const damage = calculateDamage(attacker, defender); //calculate damage as usual
+  defender.pokemon.hp -= damage;
+
+  console.log(
+    `${attacker.name} attacked ${defender.name} for ${damage} damage.`
+  );
+
+  //   if (defender.pokemon.hp <= 0) {
+  //     defender.pokemon.hp = 0;
+  //     nextMatch();
+  //   }
+
+  if (defender.pokemon.hp <= 0) {
+    defender.pokemon.hp = 0;
+    console.log(`${defender.name} fainted!`);
+    setTimeout(nextMatch, 1500);
+    return;
   }
 
-  renderBattleArea();
+  setTimeout(() => handleComputerAttack(cpu2, cpu1), 1000);
+  //   setTimeout(() => simulateCpuBattle(cpu1, cpu2), 1000);
+  //   renderBattleArea();
 }
 
 renderScoreboard();
