@@ -5,7 +5,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif",
     type: "Fire",
-    hp: 90,
+    hp: 100,
     defense: 45,
     attacks: [{ name: "Ember" }, { name: "Flamethrower" }, { name: "Scratch" }],
   },
@@ -15,7 +15,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/pikachu-f.gif",
     type: "Electric",
-    hp: 85,
+    hp: 100,
     defense: 40,
     attacks: [
       { name: "Thunder Shock" },
@@ -29,7 +29,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/squirtle.gif",
     type: "Water",
-    hp: 105,
+    hp: 100,
     defense: 55,
     attacks: [
       { name: "Water Gun" },
@@ -53,7 +53,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/haunter.gif",
     type: "Poison",
-    hp: 90,
+    hp: 100,
     defense: 42,
     attacks: [
       { name: "Lick" },
@@ -67,7 +67,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif",
     type: "Water",
-    hp: 95,
+    hp: 100,
     defense: 48,
     attacks: [
       { name: "Water Gun" },
@@ -81,7 +81,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif",
     type: "Grass",
-    hp: 105,
+    hp: 100,
     defense: 50,
     attacks: [
       { name: "Vine Whip" },
@@ -96,7 +96,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/paras.gif",
     type: "Bug",
-    hp: 95,
+    hp: 100,
     defense: 42,
     attacks: [{ name: "Scratch" }, { name: "Spore" }, { name: "Slash" }],
   },
@@ -122,7 +122,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/feraligatr.gif",
     type: "Water",
-    hp: 115,
+    hp: 100,
     defense: 60,
     attacks: [{ name: "Waterfall" }, { name: "Bite" }, { name: "Crunch" }],
   },
@@ -133,7 +133,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/gengar.gif",
     type: "Ghost",
-    hp: 98,
+    hp: 100,
     defense: 45,
     attacks: [
       { name: "Shadow Ball" },
@@ -148,7 +148,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/arcanine.gif",
     type: "Fire",
-    hp: 110,
+    hp: 100,
     defense: 55,
     attacks: [
       { name: "Flamethrower" },
@@ -163,7 +163,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/machamp.gif",
     type: "Fighting",
-    hp: 115,
+    hp: 100,
     defense: 60,
     attacks: [
       { name: "Dynamic Punch" },
@@ -178,7 +178,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/alakazam.gif",
     type: "Psychic",
-    hp: 95,
+    hp: 100,
     defense: 40,
     attacks: [{ name: "Psychic" }, { name: "Teleport" }, { name: "Recover" }],
   },
@@ -189,7 +189,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/snorlax.gif",
     type: "Normal",
-    hp: 120,
+    hp: 100,
     defense: 65,
     attacks: [{ name: "Body Slam" }, { name: "Rest" }, { name: "Hyper Beam" }],
   },
@@ -200,7 +200,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/lapras.gif",
     type: "Water/Ice",
-    hp: 115,
+    hp: 100,
     defense: 60,
     attacks: [{ name: "Ice Beam" }, { name: "Surf" }, { name: "Body Slam" }],
   },
@@ -211,7 +211,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/jolteon.gif",
     type: "Electric",
-    hp: 95,
+    hp: 100,
     defense: 42,
     attacks: [
       { name: "Thunderbolt" },
@@ -226,7 +226,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/dragonite.gif",
     type: "Dragon/Flying",
-    hp: 115,
+    hp: 100,
     defense: 60,
     attacks: [
       { name: "Dragon Claw" },
@@ -241,7 +241,7 @@ const pokemons = [
     movingImg:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/scyther.gif",
     type: "Bug/Flying",
-    hp: 98,
+    hp: 100,
     defense: 50,
     attacks: [
       { name: "Slash" },
@@ -252,7 +252,7 @@ const pokemons = [
   {
     name: "Ivysaur",
     type: "Grass/Poison",
-    hp: 110,
+    hp: 100,
     defense: 55,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/ivysaur.gif",
@@ -267,7 +267,7 @@ const pokemons = [
   {
     name: "Charmeleon",
     type: "Fire",
-    hp: 95,
+    hp: 100,
     defense: 48,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/charmeleon.gif",
@@ -282,7 +282,7 @@ const pokemons = [
   {
     name: "Wartortle",
     type: "Water",
-    hp: 110,
+    hp: 100,
     defense: 58,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/wartortle.gif",
@@ -293,7 +293,7 @@ const pokemons = [
   {
     name: "Blastoise",
     type: "Water",
-    hp: 120,
+    hp: 100,
     defense: 65,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/blastoise.gif",
@@ -304,7 +304,7 @@ const pokemons = [
   {
     name: "Caterpie",
     type: "Bug",
-    hp: 80,
+    hp: 100,
     defense: 40,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/caterpie.gif",
@@ -319,7 +319,7 @@ const pokemons = [
   {
     name: "Metapod",
     type: "Bug",
-    hp: 85,
+    hp: 100,
     defense: 50,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/metapod.gif",
@@ -345,7 +345,7 @@ const pokemons = [
   {
     name: "Weedle",
     type: "Bug/Poison",
-    hp: 80,
+    hp: 100,
     defense: 42,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/weedle.gif",
@@ -360,7 +360,7 @@ const pokemons = [
   {
     name: "Kakuna",
     type: "Bug/Poison",
-    hp: 85,
+    hp: 100,
     defense: 50,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/kakuna.gif",
@@ -375,7 +375,7 @@ const pokemons = [
   {
     name: "Beedrill",
     type: "Bug/Poison",
-    hp: 95,
+    hp: 100,
     defense: 48,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/beedrill.gif",
@@ -390,7 +390,7 @@ const pokemons = [
   {
     name: "Pidgey",
     type: "Normal/Flying",
-    hp: 85,
+    hp: 100,
     defense: 45,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/pidgey.gif",
@@ -401,7 +401,7 @@ const pokemons = [
   {
     name: "Pidgeotto",
     type: "Normal/Flying",
-    hp: 95,
+    hp: 100,
     defense: 50,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/pidgeotto.gif",
@@ -416,7 +416,7 @@ const pokemons = [
   {
     name: "Pidgeot",
     type: "Normal/Flying",
-    hp: 110,
+    hp: 100,
     defense: 60,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/pidgeot.gif",
@@ -431,7 +431,7 @@ const pokemons = [
   {
     name: "Rattata",
     type: "Normal",
-    hp: 80,
+    hp: 100,
     defense: 40,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/rattata.gif",
@@ -461,7 +461,7 @@ const pokemons = [
   {
     name: "Spearow",
     type: "Normal/Flying",
-    hp: 85,
+    hp: 100,
     defense: 45,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/spearow.gif",
@@ -476,7 +476,7 @@ const pokemons = [
   {
     name: "Fearow",
     type: "Normal/Flying",
-    hp: 105,
+    hp: 100,
     defense: 60,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/fearow.gif",
@@ -491,7 +491,7 @@ const pokemons = [
   {
     name: "Ekans",
     type: "Poison",
-    hp: 90,
+    hp: 100,
     defense: 45,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/ekans.gif",
@@ -502,7 +502,7 @@ const pokemons = [
   {
     name: "Arbok",
     type: "Poison",
-    hp: 105,
+    hp: 100,
     defense: 60,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/arbok.gif",
@@ -528,7 +528,7 @@ const pokemons = [
   {
     name: "Sandshrew",
     type: "Ground",
-    hp: 95,
+    hp: 100,
     defense: 55,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/sandshrew.gif",
@@ -539,7 +539,7 @@ const pokemons = [
   {
     name: "Sandslash",
     type: "Ground",
-    hp: 110,
+    hp: 100,
     defense: 65,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/sandslash.gif",
@@ -550,7 +550,7 @@ const pokemons = [
   {
     name: "Clefairy",
     type: "Fairy",
-    hp: 110,
+    hp: 100,
     defense: 55,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/clefairy.gif",
@@ -565,7 +565,7 @@ const pokemons = [
   {
     name: "Clefable",
     type: "Fairy",
-    hp: 120,
+    hp: 100,
     defense: 65,
     image:
       "https://img.pokemondb.net/sprites/black-white/anim/normal/clefable.gif",
