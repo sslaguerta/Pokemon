@@ -83,6 +83,7 @@ function renderBattleArea() {
   battleAreaElement.innerHTML = `
     <div class="pokemon-area">
     <div class="inbattle-pokemon">
+        <h4>${player1.pokemon.name}</h4>
         <h3 style="color:${player1.pokemon.hp >= 30 ? "green" : "red"}">
           Health: ${player1.pokemon.hp} <br> DEF: ${player1.pokemon.defense}
         </h3>
@@ -96,9 +97,10 @@ function renderBattleArea() {
        
     </div>
         <div class="inbattle-pokemon">
-        <h3 style="color:${player2.pokemon.hp >= 30 ? "green" : "red"}">
-          Health: ${player2.pokemon.hp} <br> DEF: ${player2.pokemon.defense}
-        </h3>
+            <h4>${player2.pokemon.name}</h4>
+            <h3 style="color:${player2.pokemon.hp >= 30 ? "green" : "red"}">
+            Health: ${player2.pokemon.hp} <br> DEF: ${player2.pokemon.defense}
+            </h3>
         <img src="${player2.pokemon.movingImg}" alt="${player2.name}" />
         <div class="player-details"> 
             <h4>${player2.level}</h4>
