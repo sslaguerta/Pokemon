@@ -8,10 +8,23 @@ let scores = new Array(players.length).fill(0);
 const scoreboardElement = document.querySelector(".scoreboard");
 const battleAreaElement = document.querySelector(".battle-area");
 const attackButtons = document.querySelector(".attack-buttons");
+const round = document.querySelector(".round");
+
+matchIndicator();
+
+function matchIndicator() {
+  round.innerHTML = `Match ${currentMatchIndex + 1}`;
+
+  // Restart the moveUp animation
+  round.style.animation = "none";
+  round.offsetHeight; // force reflow
+  round.style.animation = "moveUp 2s ease-in-out forwards";
+}
 
 // console.log(schedule.length);
 function renderScoreboard() {
   const players = JSON.parse(localStorage.getItem("players")) || [];
+  const lastWinner = localStorage.getItem("lastWinner") || "";
 
   let tableHTML = `
     <table>
@@ -28,14 +41,15 @@ function renderScoreboard() {
   `;
 
   players.forEach((player) => {
+    const scoreClass = player.name === lastWinner ? "winner-highlight" : "";
     tableHTML += `
       <tr>
         ${
           player.name === "You"
-            ? `<td style="color: yellow">${player.name}</td>`
+            ? `<td style="background-color: yellow; color: Blue">${player.name}</td>`
             : `<td>${player.name}</td>`
         }
-        <td>${player.score || 0}</td>
+        <td class="${scoreClass}">${player.score || 0}</td>
       </tr>
     `;
   });
@@ -72,7 +86,7 @@ function renderBattleArea() {
         <h3 style="color:${player1.pokemon.hp >= 30 ? "green" : "red"}">
           Health: ${player1.pokemon.hp} <br> DEF: ${player1.pokemon.defense}
         </h3>
-        <img src="${player1.pokemon.movingImg}" alt="${
+        <img src="${player1.pokemon.movingImg}" id="pokemonCur" alt="${
     player1.name
   }" class="flip-horizontal"/>
          <div class="player-details"> 
@@ -97,7 +111,6 @@ function renderBattleArea() {
   // Player vs CPU
   // check if the player 1 is a human so that it can render buttons
   if (player1.name === "You") {
-    attackButtons.style.display = "flex";
     attackButtons.innerHTML = player1.pokemon.attacks
       .map((atk) => `<button class="attack-btn">${atk.name}</button>`)
       .join(""); //merges all array elements into a single string with nothing in between
@@ -112,7 +125,7 @@ function renderBattleArea() {
   // CPU vs CPU
   else {
     attackButtons.innerHTML = "<p>CPU battle in progress...</p>";
-    setTimeout(() => simulateCpuBattle(player1, player2), 1000);
+    setTimeout(() => simulateCpuBattle(player1, player2), 500);
     // setTimeout(() => handleComputerAttack(player1, player2), 1000);
   }
 }
@@ -128,6 +141,46 @@ function calculateDamage(attacker, defender) {
   return Math.floor(baseAttack * luckFactor * defenseFactor * levelFactor);
 }
 
+function highlightPokemon(playerName) {
+  const pokemonImg = Array.from(
+    document.querySelectorAll(".inbattle-pokemon img")
+  ).find((img) => img.alt === playerName);
+
+  if (pokemonImg) {
+    pokemonImg.classList.add("pokemon-hit");
+
+    // Remove animation class after animation ends
+    pokemonImg.addEventListener(
+      "animationend",
+      () => {
+        pokemonImg.classList.remove("pokemon-hit");
+      },
+      { once: true }
+    );
+  }
+}
+
+function showDamage(playerName, damage) {
+  const pokemonContainer = Array.from(
+    document.querySelectorAll(".inbattle-pokemon")
+  ).find((container) => container.querySelector(`img[alt="${playerName}"]`));
+
+  if (pokemonContainer) {
+    const dmgElement = document.createElement("div");
+    dmgElement.classList.add("damage-text");
+    dmgElement.innerHTML = `- ${damage} Aray ko!`;
+
+    // Position relative so absolute damage text works
+    pokemonContainer.style.position = "relative";
+    pokemonContainer.appendChild(dmgElement);
+
+    // Remove after animation
+    setTimeout(() => {
+      dmgElement.remove();
+    }, 1000);
+  }
+}
+
 function handlePlayerAttack(attacker, defender, attackIndex) {
   attackButtons.style.display = "none";
   const attack = attacker.pokemon.attacks[attackIndex]; //gets the attacker attack index for identifying what attack is used
@@ -141,13 +194,22 @@ function handlePlayerAttack(attacker, defender, attackIndex) {
 
   if (defender.pokemon.hp <= 0) {
     defender.pokemon.hp = 0;
+    const winner = players.find((p) => p.name === attacker.name);
+    if (winner) {
+      winner.score++;
+      localStorage.setItem("players", JSON.stringify(players));
+      localStorage.setItem("lastWinner", winner.name);
+    }
     console.log(`${defender.name} fainted!`);
     renderBattleArea(); // to update hp of defeated pokemon
-    nextMatch();
+    highlightPokemon(defender.name);
+    showDamage(defender.name, damage);
+    setTimeout(nextMatch, 1500);
     return; // to refrain computer for attacking back
   }
   renderBattleArea();
-
+  highlightPokemon(defender.name);
+  showDamage(defender.name, damage);
   setTimeout(() => {
     handleComputerAttack(defender, attacker);
     attackButtons.style.display = "flex";
@@ -170,11 +232,22 @@ function handleComputerAttack(attacker, defender) {
 
   if (defender.pokemon.hp <= 0) {
     defender.pokemon.hp = 0;
+    highlightPokemon(defender.name);
+    showDamage(defender.name, damage);
+
+    const winner = players.find((p) => p.name === attacker.name);
+    if (winner) {
+      winner.score++;
+      localStorage.setItem("players", JSON.stringify(players));
+      localStorage.setItem("lastWinner", winner.name);
+    }
     console.log(`${defender.name} fainted!`);
     nextMatch();
     return;
   }
   renderBattleArea();
+  highlightPokemon(defender.name);
+  showDamage(defender.name, damage);
 }
 
 function nextMatch() {
@@ -185,10 +258,18 @@ function nextMatch() {
   currentMatchIndex++;
   if (currentMatchIndex >= schedule.length) {
     console.log("Tournament finished!");
+    const highestScore = Math.max(...players.map((p) => p.score || 0));
+    const topPlayers = players.filter((p) => (p.score || 0) === highestScore);
+
+    // Store in localStorage
+    console.log(topPlayers);
+    window.location.href = 'winners.html';
+    localStorage.setItem("topPlayers", JSON.stringify(topPlayers));
     return;
   }
   renderScoreboard();
   renderBattleArea();
+  matchIndicator();
 }
 
 function simulateCpuBattle(cpu1, cpu2) {
@@ -196,6 +277,8 @@ function simulateCpuBattle(cpu1, cpu2) {
   const defender = cpu2; // if cpu1 is the attacker so cpu2 is the defender
   const damage = calculateDamage(attacker, defender); //calculate damage as usual
   defender.pokemon.hp -= damage;
+  highlightPokemon(defender.name);
+  showDamage(defender.name, damage);
 
   console.log(
     `${attacker.name} attacked ${defender.name} for ${damage} damage.`
@@ -208,12 +291,23 @@ function simulateCpuBattle(cpu1, cpu2) {
 
   if (defender.pokemon.hp <= 0) {
     defender.pokemon.hp = 0;
+    highlightPokemon(defender.name);
+    showDamage(defender.name, damage);
+    const winner = players.find((p) => p.name === attacker.name);
+    if (winner) {
+      winner.score++;
+      localStorage.setItem("players", JSON.stringify(players));
+      localStorage.setItem("lastWinner", winner.name);
+    }
     console.log(`${defender.name} fainted!`);
     setTimeout(nextMatch, 1500);
     return;
   }
 
-  setTimeout(() => handleComputerAttack(cpu2, cpu1), 1000);
+  setTimeout(() => {
+    handleComputerAttack(cpu2, cpu1);
+    attackButtons.style.display = "flex";
+  }, 800);
   //   setTimeout(() => simulateCpuBattle(cpu1, cpu2), 1000);
   //   renderBattleArea();
 }

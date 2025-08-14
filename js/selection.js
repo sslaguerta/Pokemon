@@ -6,7 +6,7 @@ const pokemons = [
       "https://img.pokemondb.net/sprites/black-white/anim/normal/charmander.gif",
     type: "Fire",
     hp: 100,
-    defense: 43,
+    defense: 45,
     attacks: [{ name: "Ember" }, { name: "Flamethrower" }, { name: "Scratch" }],
   },
   {
@@ -30,7 +30,7 @@ const pokemons = [
       "https://img.pokemondb.net/sprites/black-white/anim/normal/squirtle.gif",
     type: "Water",
     hp: 100,
-    defense: 65,
+    defense: 55,
     attacks: [
       { name: "Water Gun" },
       { name: "Tackle" },
@@ -44,7 +44,7 @@ const pokemons = [
       "https://img.pokemondb.net/sprites/black-white/anim/normal/dratini.gif",
     type: "Dragon",
     hp: 100,
-    defense: 30,
+    defense: 50,
     attacks: [{ name: "Dragon Rage" }, { name: "Slam" }, { name: "Twister" }],
   },
   {
@@ -54,7 +54,7 @@ const pokemons = [
       "https://img.pokemondb.net/sprites/black-white/anim/normal/haunter.gif",
     type: "Poison",
     hp: 100,
-    defense: 30,
+    defense: 42,
     attacks: [
       { name: "Lick" },
       { name: "Shadow Ball" },
@@ -68,7 +68,7 @@ const pokemons = [
       "https://img.pokemondb.net/sprites/black-white/anim/normal/psyduck.gif",
     type: "Water",
     hp: 100,
-    defense: 30,
+    defense: 48,
     attacks: [
       { name: "Water Gun" },
       { name: "Confusion" },
@@ -82,13 +82,39 @@ function randomLevel() {
 }
 
 function startTournament(selectedPokemon) {
+  const playerLevel = JSON.parse(localStorage.getItem("playerLevel"));
   const players = [
-    { name: "You", pokemon: selectedPokemon, level: 10 },
-    { name: "Ash", pokemon: getRandomPokemon(), level: 1 },
-    { name: "Misty", pokemon: getRandomPokemon(), level: randomLevel() },
-    { name: "Brock", pokemon: getRandomPokemon(), level: randomLevel() },
-    { name: "Red", pokemon: getRandomPokemon(), level: randomLevel() },
-    { name: "Fernan", pokemon: getRandomPokemon(), level: randomLevel() },
+    {
+      name: "You",
+      pokemon: selectedPokemon,
+      level: playerLevel || 1,
+      score: 0,
+    },
+    { name: "Ash", pokemon: getRandomPokemon(), level: 5, score: 0 },
+    {
+      name: "Misty",
+      pokemon: getRandomPokemon(),
+      level: randomLevel(),
+      score: 0,
+    },
+    {
+      name: "Brock",
+      pokemon: getRandomPokemon(),
+      level: randomLevel(),
+      score: 0,
+    },
+    {
+      name: "Red",
+      pokemon: getRandomPokemon(),
+      level: randomLevel(),
+      score: 0,
+    },
+    {
+      name: "Fernan",
+      pokemon: getRandomPokemon(),
+      level: randomLevel(),
+      score: 0,
+    },
   ];
   const schedule = generateRoundRobin(players.length);
 

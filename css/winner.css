@@ -1,0 +1,65 @@
+body {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 100dvh;
+}
+
+.winner {
+  width: 70vw;
+  height: auto;
+  background-color: #fbe58c;
+  padding: 30px;
+  border: 10px solid #3d5ca9;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #3d5ca9;
+  overflow: hidden;
+}
+
+.winner h1 {
+  font-family: "Luckiest Guy";
+  font-size: 10rem;
+  color: #ffcb05;
+  -webkit-text-stroke: 2px #3d5ca9;
+  text-shadow: 1px 1px 0 #3d5ca9;
+  margin-bottom: 100px;
+}
+
+.winner h2 {
+  font-family: "Luckiest Guy";
+  font-size: 2rem;
+  color: #3d5ca9;
+  /* -webkit-text-stroke: 2px #3d5ca9; */
+  text-shadow: 1px 1px 0 #3d5ca9;
+  margin-bottom: 100px;
+  font-weight: lighter;
+}
+
+button {
+  background-color: #3d5ca9;
+  color: #ffcb05;
+  border: none;
+  padding: 15px;
+  font-size: 2.5rem;
+  border-radius: 10px;
+  box-shadow: 0 6px #2a3f78;
+}
+
+
+.pokemon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pokemon-container img{
+    width: 120px;
+    height: 120px;
+}

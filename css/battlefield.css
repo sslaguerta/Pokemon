@@ -47,6 +47,8 @@ body {
 .scoreboard td {
   padding: 6px;
   border: 1px solid #ccc;
+  font-family: "Luckiest Guy";
+  font-weight: lighter;
 }
 .scoreboard td:nth-child(2) {
   text-align: right;
@@ -115,7 +117,7 @@ body {
   display: flex;
   gap: 10px;
   position: absolute;
-  bottom: 0;
+  bottom: 25px;
   width: 70vw;
   height: 14vh;
   justify-content: space-evenly;
@@ -191,12 +193,114 @@ body {
     transform: translateY(-50%);
   }
   100% {
-    top: 10%;
+    top: 8%;
     transform: translateY(0);
     font-size: 4rem;
   }
 }
 
 p {
-    color: white;
+  color: white;
+  font-family: "Luckiest Guy";
+  font-size: 3rem;
+}
+
+@keyframes winnerFlash {
+  0% {
+    background-color: gold;
+    color: black;
+  }
+  100% {
+    background-color: transparent;
+    color: inherit;
+  }
+}
+
+.winner-highlight {
+  animation: winnerFlash 2s ease-in-out forwards;
+}
+
+@keyframes shakeAndRedFlipped {
+  0% {
+    transform: scaleX(-1) translateX(0);
+    filter: brightness(1);
+  }
+  20% {
+    transform: scaleX(-1) translateX(-4px);
+    filter: brightness(1.3);
+  }
+  40% {
+    transform: scaleX(-1) translateX(4px);
+    filter: brightness(1.3);
+  }
+  60% {
+    transform: scaleX(-1) translateX(-3px);
+    filter: brightness(1.3);
+  }
+  80% {
+    transform: scaleX(-1) translateX(3px);
+    filter: brightness(1.3);
+  }
+  100% {
+    transform: scaleX(-1) translateX(0);
+    filter: brightness(1);
+  }
+}
+
+@keyframes shakeAndRedNormal {
+  0% {
+    transform: translateX(0);
+    filter: brightness(1);
+  }
+  20% {
+    transform: translateX(-4px);
+    filter: brightness(1.3);
+  }
+  40% {
+    transform: translateX(4px);
+    filter: brightness(1.3);
+  }
+  60% {
+    transform: translateX(-3px);
+    filter: brightness(1.3);
+  }
+  80% {
+    transform: translateX(3px);
+    filter: brightness(1.3);
+  }
+  100% {
+    transform: translateX(0);
+    filter: brightness(1);
+  }
+}
+
+.pokemon-hit {
+  animation: shakeAndRedNormal 0.4s ease;
+}
+
+.pokemon-hit.flip-horizontal {
+  animation: shakeAndRedFlipped 0.4s ease;
+}
+
+.damage-text {
+  position: absolute;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: red;
+  -webkit-text-stroke: 1.5px #ffffff;
+  text-shadow: 2px 2px 4px black;
+  font-family: "Luckiest Guy";
+  animation: floatUp 1s ease-out forwards;
+  pointer-events: none; /* so it won't block clicks */
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
 }
