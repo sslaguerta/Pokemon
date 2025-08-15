@@ -1,0 +1,15 @@
+Flow
+
+GAME START
+-- go to selection page
+    -- BATTLE
+        -- select a pokemon
+        -- after selecting a pokemon, startTournament() the selected pokemon will be the pokemon of the user "you" and the playerLevel is from the localStorage and the default is level 1.
+        -- the opponents level and pokemon is randomized for balance and unpredicatble game
+        -- then the generateRoundRobin function is dependent on the players length which is 6
+        -- the players then will be saved to the localStorage as well as the schedule.
+        -- the schedule is predefined so that there is a line up once the match starts
+    -- TRAIN
+        -- tap pikachu to level up, it is between 60-100 taps before leveling up 
+        -- the level limit for now is up to level 5 for simplicity
+        -- you can reset level if you want to

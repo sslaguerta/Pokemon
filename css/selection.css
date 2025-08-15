@@ -47,6 +47,12 @@
   cursor: url("../images/cursor.png") 16 16, auto;
 }
 
+.prev:active,
+.next:active {
+  box-shadow: 0 2px #2a3f78;
+  transform: translateY(4px);
+}
+
 .carousel {
   display: flex;
   justify-content: center;
@@ -62,12 +68,13 @@
   font-family: "Pixelify Sans", sans-serif;
   color: #3d5ca9;
   position: relative;
-  transition: all .15s ease-in-out;
+  transition: all 0.15s ease-in-out;
 }
 
 .pokemon-card img:hover {
   transform: scale(1.1);
 }
+
 .attributes-div {
   background-color: #fbe58c;
   padding: 20px;

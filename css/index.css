@@ -3,7 +3,6 @@
   padding: 0;
   box-sizing: border-box;
   cursor: url("/images/cursor.png") 16 16, auto;
-
 }
 .index-container {
   display: flex;
@@ -66,8 +65,14 @@
   cursor: url("../images/cursor.png") 16 16, auto;
 }
 
+.back-btn:active {
+  box-shadow: 0 2px #2a3f78;
+  transform: translateY(4px);
+}
+
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
     /* box-shadow: -10px 12px 0px black; */
     box-shadow: 0 6px #2a3f78;
@@ -78,4 +83,3 @@
     box-shadow: 0 6px #2a3f78;
   }
 }
-

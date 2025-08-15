@@ -577,6 +577,129 @@ const pokemons = [
       { name: "Calm Mind" },
     ],
   },
+  {
+    name: "Wigglytuff",
+    type: "Normal/Fairy",
+    hp: 100,
+    defense: 55,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/wigglytuff.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/wigglytuff.gif",
+    attacks: [
+      { name: "Hyper Voice" },
+      { name: "Double-Edge" },
+      { name: "Defense Curl" },
+    ],
+  },
+  {
+    name: "Vileplume",
+    type: "Grass/Poison",
+    hp: 100,
+    defense: 60,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/vileplume.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/vileplume.gif",
+    attacks: [
+      { name: "Solar Beam" },
+      { name: "Sludge Bomb" },
+      { name: "Stun Spore" },
+    ],
+  },
+  {
+    name: "Parasect",
+    type: "Bug/Grass",
+    hp: 100,
+    defense: 60,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/parasect.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/parasect.gif",
+    attacks: [{ name: "Spore" }, { name: "X-Scissor" }, { name: "Leech Life" }],
+  },
+  {
+    name: "Dugtrio",
+    type: "Ground",
+    hp: 100,
+    defense: 40,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/dugtrio.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/dugtrio.gif",
+    attacks: [
+      { name: "Earthquake" },
+      { name: "Rock Slide" },
+      { name: "Mud-Slap" },
+    ],
+  },
+  {
+    name: "Persian",
+    type: "Normal",
+    hp: 100,
+    defense: 50,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/persian.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/persian.gif",
+    attacks: [{ name: "Slash" }, { name: "Bite" }, { name: "Fake Out" }],
+  },
+  {
+    name: "Golem",
+    type: "Rock/Ground",
+    hp: 100,
+    defense: 65,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/golem.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/golem.gif",
+    attacks: [
+      { name: "Earthquake" },
+      { name: "Stone Edge" },
+      { name: "Defense Curl" },
+    ],
+  },
+  {
+    name: "Rapidash",
+    type: "Fire",
+    hp: 100,
+    defense: 55,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/rapidash.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/rapidash.gif",
+    attacks: [{ name: "Flamethrower" }, { name: "Stomp" }, { name: "Agility" }],
+  },
+  {
+    name: "Hypno",
+    type: "Psychic",
+    hp: 100,
+    defense: 60,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/hypno.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/hypno.gif",
+    attacks: [
+      { name: "Psychic" },
+      { name: "Hypnosis" },
+      { name: "Dream Eater" },
+    ],
+  },
+  {
+    name: "Kingler",
+    type: "Water",
+    hp: 100,
+    defense: 60,
+    image:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/kingler.gif",
+    movingImg:
+      "https://img.pokemondb.net/sprites/black-white/anim/normal/kingler.gif",
+    attacks: [
+      { name: "Crabhammer" },
+      { name: "Vice Grip" },
+      { name: "Bubble Beam" },
+    ],
+  },
 ];
 
 function randomLevel() {
